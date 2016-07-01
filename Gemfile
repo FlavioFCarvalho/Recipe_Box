@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'haml', '~> 4.0.5'
 #gem 'haml-rails', '~> 0.9.0'
+gem 'simple_form', '~> 3.0.2'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
