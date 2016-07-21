@@ -15,9 +15,12 @@ ActiveRecord::Schema.define(version: 20160721003055) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
+    t.integer  "recipe_id",  limit: 4
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "categories", ["recipe_id"], name: "index_categories_on_recipe_id", using: :btree
 
   create_table "directions", force: :cascade do |t|
     t.text     "step",       limit: 65535
@@ -47,7 +50,6 @@ ActiveRecord::Schema.define(version: 20160721003055) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
-    t.integer  "category_id",        limit: 4
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20160721003055) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "categories", "recipes"
   add_foreign_key "directions", "recipes"
   add_foreign_key "ingredients", "recipes"
 end

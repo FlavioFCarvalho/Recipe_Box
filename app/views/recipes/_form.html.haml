@@ -18,6 +18,8 @@
 					= f.label :category_id
 					%br/
 					= f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category"}
+					.links
+						= link_to_add_association 'Add Category', f, :categories, class: "btn btn-default add-button"
 
 
 		.row
