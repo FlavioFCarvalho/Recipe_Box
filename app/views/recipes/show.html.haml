@@ -4,7 +4,8 @@
 			= image_tag @recipe.image.url(:medium), class: "recipe_image"
 		.col-md-8
 			#recipe_info
-				%h1= @recipe.title
+				%h1= @recipe.category.name
+				%h2= @recipe.title
 				%p.description= @recipe.description
 				%p
 					Submitted by
