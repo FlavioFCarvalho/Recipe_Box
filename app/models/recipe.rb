@@ -1,5 +1,6 @@
 class Recipe < ActiveRecord::Base
     belongs_to :user
+    belongs_to :category
     paginates_per 3 
     has_many :ingredients
     has_many :directions 
