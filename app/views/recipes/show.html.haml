@@ -2,19 +2,23 @@
 	#recipe_top.row
 		.col-md-4
 			= image_tag @recipe.image.url(:medium), class: "recipe_image"
-		.col-md-8
+		.col-md-4
 			#recipe_info
 				%h1= @recipe.title
 				%p.description= @recipe.description
 				%p
 					Submitted by
 					= @recipe.user.email
-				#categories  	   
-					%h2 Categories
-					%ul
-						- @recipe.recipe_categories.each do |category|
-							%li= category.category.name	
+		.col-md-4
+			#recipe_info		
 				
+	.row
+		.col-md-12			
+			#categories  	   
+				%h2 Categories
+				%ul
+					- @recipe.recipe_categories.each do |category|
+						%li= category.category.name	
 
 	.row
 		.col-md-6
