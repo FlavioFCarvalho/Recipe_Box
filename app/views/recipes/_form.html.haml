@@ -16,7 +16,7 @@
 				%h3 Categories
 				#categories
 					= f.simple_fields_for :categories_recipes do |category|
-						=render "category_recipe_fields", f: category
+						=render "categories_recipe_fields", f: category
 					.links
 						= link_to_add_association 'Add Category', f, :categories_recipes, class: "btn btn-default add-button"
 
