@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
     has_many :ingredients, dependent: :destroy
     has_many :directions, dependent: :destroy
     has_many :recipe_categories, dependent: :destroy
+    has_many :comments, dependent: :destroy
 
     accepts_nested_attributes_for :recipe_categories,
                                   reject_if: proc{|attributes| attributes['category_id'].blank?},
