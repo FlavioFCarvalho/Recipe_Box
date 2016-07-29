@@ -11,7 +11,7 @@ class RecipesController < ApplicationController
 	end
 
 	def show
-		
+		@comments = Comment.where(recipe_id: @recipe) 
 	end
 
 	def new
