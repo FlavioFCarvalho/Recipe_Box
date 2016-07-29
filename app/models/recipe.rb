@@ -3,7 +3,11 @@ class Recipe < ActiveRecord::Base
     paginates_per 3 
     has_many :ingredients
     has_many :directions
-    has_many :category 
+    has_many :categories_recipes, class_name: 'CategoriesRecipe'
+
+    accepts_nested_attributes_for :categories_recipes,
+                                  reject_if: proc{|attributes| attributes['category_id'].blank?},
+                                  allow_destroy: true
 
     accepts_nested_attributes_for :ingredients,
                                   reject_if: proc{|attributes| attributes['name'].blank?},
@@ -13,7 +17,7 @@ class Recipe < ActiveRecord::Base
                                   reject_if: proc{|attributes| attributes['step'].blank?},
                                   allow_destroy: true                                 
        
-  validates :title, :description,:category_id,presence: true   
+  validates :title, :description,presence: true   
 	has_attached_file :image, styles: { :medium => "400x400#" }
 	validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 end

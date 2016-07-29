@@ -1,3 +1,3 @@
 class Category < ActiveRecord::Base
-	belongs_to :recipe
+	has_many :categories_recipes, class_name: 'CategoriesRecipe'
 end

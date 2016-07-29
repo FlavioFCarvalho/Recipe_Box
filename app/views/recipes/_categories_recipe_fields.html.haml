@@ -1,0 +1,6 @@
+.form-inline.clearfix
+  .nested-fields
+    = f.label :category_id
+    %br/
+    = f.collection_select :category_id, Category.all, :id, :name, {promt: "Choose a category"}
+    / = link_to_remove_association "Remove", f, class: "form-button btn btn-default"
