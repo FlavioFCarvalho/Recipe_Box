@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160722144416) do
+ActiveRecord::Schema.define(version: 20160729124329) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -21,11 +21,6 @@ ActiveRecord::Schema.define(version: 20160722144416) do
   end
 
   add_index "categories", ["recipe_id"], name: "index_categories_on_recipe_id", using: :btree
-
-  create_table "categories_recipes", id: false, force: :cascade do |t|
-    t.integer "recipe_id",   limit: 4, null: false
-    t.integer "category_id", limit: 4, null: false
-  end
 
   create_table "directions", force: :cascade do |t|
     t.text     "step",       limit: 65535
@@ -44,6 +39,16 @@ ActiveRecord::Schema.define(version: 20160722144416) do
   end
 
   add_index "ingredients", ["recipe_id"], name: "index_ingredients_on_recipe_id", using: :btree
+
+  create_table "recipe_categories", force: :cascade do |t|
+    t.integer  "recipe_id",   limit: 4
+    t.integer  "category_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "recipe_categories", ["category_id"], name: "index_recipe_categories_on_category_id", using: :btree
+  add_index "recipe_categories", ["recipe_id"], name: "index_recipe_categories_on_recipe_id", using: :btree
 
   create_table "recipes", force: :cascade do |t|
     t.string   "title",              limit: 255
@@ -78,4 +83,6 @@ ActiveRecord::Schema.define(version: 20160722144416) do
   add_foreign_key "categories", "recipes"
   add_foreign_key "directions", "recipes"
   add_foreign_key "ingredients", "recipes"
+  add_foreign_key "recipe_categories", "categories"
+  add_foreign_key "recipe_categories", "recipes"
 end

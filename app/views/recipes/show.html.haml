@@ -12,7 +12,7 @@
 				#categories  	   
 					%h2 Categories
 					%ul
-						- @recipe.categories_recipes.each do |category|
+						- @recipe.recipe_categories.each do |category|
 							%li= category.category.name	
 				
 

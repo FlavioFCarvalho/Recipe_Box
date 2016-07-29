@@ -1,11 +1,11 @@
 class Recipe < ActiveRecord::Base
     belongs_to :user
     paginates_per 3 
-    has_many :ingredients
-    has_many :directions
-    has_many :categories_recipes, class_name: 'CategoriesRecipe'
+    has_many :ingredients, dependent: :destroy
+    has_many :directions, dependent: :destroy
+    has_many :recipe_categories, dependent: :destroy
 
-    accepts_nested_attributes_for :categories_recipes,
+    accepts_nested_attributes_for :recipe_categories,
                                   reject_if: proc{|attributes| attributes['category_id'].blank?},
                                   allow_destroy: true
 
